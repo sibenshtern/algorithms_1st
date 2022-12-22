@@ -21,38 +21,10 @@ RUN LANG="C.UTF-8" \
     unzip \
     # The tools in this package are used when installing packages for Python
     build-essential \
-    swig3.0 \
-    # Required for Microsoft SQL Server
-    unixodbc-dev \
-    # Required for PostgreSQL
-    libpq-dev \
-    # Required for mysqlclient
-    default-libmysqlclient-dev \
-    # Required for ts
-    moreutils \
-    rsync \
     zip \
-    libgdiplus \
-    jq \
-    # By default pip is not available in the buildpacks image
     python-pip-whl \
     python3-pip \
-    #.NET Core related pre-requisites
-    libc6 \
-    libgcc1 \
-    libgssapi-krb5-2 \
-    libncurses5 \
-    liblttng-ust0 \
-    libssl-dev \
     libstdc++6 \
-    zlib1g \
-    libuuid1 \
-    libunwind8 \
-    sqlite3 \
-    libsqlite3-dev \
-    software-properties-common \
-    tk-dev \
-    uuid-dev \
     curl \
     gettext \
     && rm -rf /var/lib/apt/lists/* \
@@ -68,8 +40,6 @@ RUN apt-get update \
     # Install tools and shells not in common script
     && apt-get install -yq vim vim-doc xtail software-properties-common libsecret-1-dev \
     # Install additional tools (useful for 'puppeteer' project)
-    && apt-get install -y --no-install-recommends libnss3 libnspr4 libatk-bridge2.0-0 libatk1.0-0 libx11-6 libpangocairo-1.0-0 \
-    libx11-xcb1 libcups2 libxcomposite1 libxdamage1 libxfixes3 libpango-1.0-0 libgbm1 libgtk-3-0 \
     # Clean up
     && apt-get autoremove -y && apt-get clean -y \
     # Move first run notice to right spot
