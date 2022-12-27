@@ -1,11 +1,21 @@
 #include "stack.hpp"
 
-void Stack::Push(int value) {}
+#include <algorithm>
 
-int Stack::Pop() { return 0; }
+void Stack::Push(int value) { data_.push(value); }
 
-void MinStack::Push(int value) {}
+int Stack::Pop() {
+  auto result = data_.top();
+  data_.pop();
+  return result;
+}
 
-int MinStack::Pop() { return 0; }
+void MinStack::Push(int value) { data_.push_back(value); }
 
-int MinStack::GetMin() { return 0; }
+int MinStack::Pop() {
+  auto result = data_.back();
+  data_.pop_back();
+  return result;
+}
+
+int MinStack::GetMin() { return *std::min_element(data_.begin(), data_.end()); }
