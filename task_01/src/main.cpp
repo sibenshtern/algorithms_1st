@@ -1,3 +1,6 @@
 #include <iostream>
 
-int main() { return 0; }
+int main() {
+  auto foo = new int[10];
+  return 0;
+}
