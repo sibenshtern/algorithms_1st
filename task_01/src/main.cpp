@@ -1,7 +1,3 @@
 #include <iostream>
 
-int main() {
-  auto bar = new int[10];
-
-  return 0;
-}
+int main() { return 0; }
