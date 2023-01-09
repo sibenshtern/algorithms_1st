@@ -1,19 +1,42 @@
 
 #include <gtest/gtest.h>
 
-#include "sort.hpp"
+#include <stack>
 
-TEST(SortTest, Simple) {
-  ASSERT_EQ(Sort({}), std::vector<int>{});
-  ASSERT_EQ(Sort({1}), std::vector<int>{1});
-  ASSERT_EQ(Sort({1, 2, 3}), (std::vector<int>{1, 2, 3}));
-  ASSERT_EQ(Sort({3, 2, 1}), (std::vector<int>{1, 2, 3}));
-  ASSERT_EQ(Sort({3, 2, -1}), (std::vector<int>{-1, 2, 3}));
+#include "stack.hpp"
+
+TEST(StackTest, Simple) {
+  Stack stack;
+  stack.Push(1);              // Stack [1]
+  ASSERT_EQ(stack.Pop(), 1);  // Stack []
+  stack.Push(1);              // Stack [1]
+  stack.Push(2);              // Stack [1, 2]
+  ASSERT_EQ(stack.Pop(), 2);  // Stack [1]
+  ASSERT_EQ(stack.Pop(), 1);  // Stack []
+  stack.Push(1);              // Stack [1]
+  stack.Push(2);              // Stack [1, 2]
+  ASSERT_EQ(stack.Pop(), 2);  // Stack [1]
+  stack.Push(3);              // Stack [1, 3]
+  ASSERT_EQ(stack.Pop(), 3);  // Stack [1]
+  ASSERT_EQ(stack.Pop(), 1);  // Stack []
 }
 
-TEST(SortTest, Even) {
-  ASSERT_EQ(Sort({1, 1}), (std::vector<int>{1, 1}));
-  ASSERT_EQ(Sort({1, 1, 2, 3}), (std::vector<int>{1, 1, 2, 3}));
-  ASSERT_EQ(Sort({1, 2, 1, 3}), (std::vector<int>{1, 1, 2, 3}));
-  ASSERT_EQ(Sort({1, 1, 2, 3, 2}), (std::vector<int>{1, 1, 2, 2, 3}));
+TEST(MinStackTest, Simple) {
+  MinStack stack;
+  stack.Push(1);  // Stack [1]
+  ASSERT_EQ(stack.GetMin(), 1);
+  ASSERT_EQ(stack.Pop(), 1);  // Stack []
+  stack.Push(1);              // Stack [1]
+  stack.Push(2);              // Stack [1, 2]
+  ASSERT_EQ(stack.GetMin(), 1);
+  ASSERT_EQ(stack.Pop(), 2);  // Stack [1]
+  ASSERT_EQ(stack.Pop(), 1);  // Stack []
+  stack.Push(1);              // Stack [1]
+  stack.Push(2);              // Stack [1, 2]
+  ASSERT_EQ(stack.GetMin(), 1);
+  ASSERT_EQ(stack.Pop(), 2);  // Stack [1]
+  stack.Push(3);              // Stack [1, 3]
+  ASSERT_EQ(stack.GetMin(), 1);
+  ASSERT_EQ(stack.Pop(), 3);  // Stack [1]
+  ASSERT_EQ(stack.Pop(), 1);  // Stack []
 }
