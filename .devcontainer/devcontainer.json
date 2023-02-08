@@ -21,18 +21,21 @@
 		"vscode": {
 			// Set *default* container specific settings.json values on container create.
 			"settings": {
-				"editor.formatOnSave": true,
-				"clang.executable": "clang",
-				"clang-format.fallbackStyle": "Google",
 				"C_Cpp.clang_format_fallbackStyle": "Google",
+				"C_Cpp.clang_format_path": "clang-format",
+				"C_Cpp.clang_format_style": "file",
 				"C_Cpp.formatting": "clangFormat",
-				"C_Cpp.clang_format_path": "clang-format"
+				"clang-format.executable": "clang-format",
+				"clang-format.fallbackStyle": "Google",
+				"clang-format.language.cpp.enable": true,
+				"clang.executable": "clang",
+				"editor.formatOnSave": true
 			},
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
+				"llvm-vs-code-extensions.vscode-clangd",
 				"ms-vscode.cpptools",
-				"xaver.clang-format",
-				"llvm-vs-code-extensions.vscode-clangd"
+				"xaver.clang-format"
 			]
 		}
 	},
