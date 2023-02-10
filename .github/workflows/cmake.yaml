@@ -41,3 +41,11 @@ jobs:
       - name: Test task 04
         working-directory: ${{github.workspace}}/build
         run: ./task_04/tests_04
+      
+      - name: Test task 05
+        working-directory: ${{github.workspace}}/build
+        run: ./task_05/tests_05
+
+      - name: Test task 06
+        working-directory: ${{github.workspace}}/build
+        run: ./task_06/tests_06
