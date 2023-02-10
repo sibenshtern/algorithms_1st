@@ -1,11 +1,13 @@
-#include "tree.hpp"
+#include "hashtable.hpp"
 
-HashTable::Tree() {}
+#include <string>
 
-bool HashTable::Insert(int key, int value) { return true; }
+HashTable::HashTable() {}
 
-void HashTable::InsertOrUpdate(int key, int value) {}
+bool HashTable::Insert(std::string&& key, int value) { return true; }
+
+void HashTable::InsertOrUpdate(std::string&& key, int value) {}
 
 void HashTable::Remove(const std::string& key) {}
 
-int HashTable::Find(int key) const { return 0; }
+int HashTable::Find(const std::string& key) const { return 0; }
