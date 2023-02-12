@@ -1,15 +1,17 @@
 #pragma once
 
-#include <stack>
 #include <vector>
+#include <limits>
 
 class Stack {
  public:
   void Push(int value);
   int Pop();
+  int Top();
+  int Size();
 
  private:
-  std::stack<int> data_;
+  std::vector<int> data_;
 };
 
 class MinStack {
@@ -20,4 +22,5 @@ class MinStack {
 
  private:
   std::vector<int> data_;
+  Stack minimums_;
 };
