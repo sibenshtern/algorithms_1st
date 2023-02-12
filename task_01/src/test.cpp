@@ -1,4 +1,4 @@
-
+#include <climits>
 #include <gtest/gtest.h>
 
 #include <stack>
@@ -19,6 +19,7 @@ TEST(StackTest, Simple) {
   stack.Push(3);              // Stack [1, 3]
   ASSERT_EQ(stack.Pop(), 3);  // Stack [1]
   ASSERT_EQ(stack.Pop(), 1);  // Stack []
+  ASSERT_EQ(stack.Pop(), INT_MAX); // Stack []
 }
 
 TEST(MinStackTest, Simple) {
@@ -39,4 +40,5 @@ TEST(MinStackTest, Simple) {
   ASSERT_EQ(stack.GetMin(), 1);
   ASSERT_EQ(stack.Pop(), 3);  // Stack [1]
   ASSERT_EQ(stack.Pop(), 1);  // Stack []
+  ASSERT_EQ(stack.Pop(), INT_MAX); // Stack []
 }
