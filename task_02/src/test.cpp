@@ -4,13 +4,13 @@
 #include "heap.hpp"
 
 TEST(HeapTest, Simple) {
-  MinHeap heap;
+  MinHeap<int> heap;
   heap.Push(1);
   ASSERT_EQ(heap.Pop(), 1);
 }
 
 TEST(HeapTest, Basic) {
-  MinHeap heap;
+  MinHeap<int> heap;
   heap.Push(1);
   heap.Push(2);
   heap.Push(3);              // [1, 2, 3]
@@ -20,7 +20,7 @@ TEST(HeapTest, Basic) {
 }
 
 TEST(HeapTest, Empty) {
-  MinHeap heap;
+  MinHeap<int> heap;
   ASSERT_ANY_THROW(heap.Pop());
   heap.Push(1);
   ASSERT_EQ(heap.Pop(), 1);  // [(1), 2, 3]
@@ -28,7 +28,7 @@ TEST(HeapTest, Empty) {
 }
 
 TEST(HeapTest, Complex) {
-  MinHeap heap;
+  MinHeap<int> heap;
   heap.Push(6);              // [6]
   heap.Push(1);              // [1, 6]
   heap.Push(2);              // [1, 2, 6]
