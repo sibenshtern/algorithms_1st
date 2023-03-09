@@ -19,6 +19,7 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: clang-tidy-review
+        clang_tidy_checks: '-*,performance-*,bugprone-*,clang-analyzer-*,cppcoreguidelines-*,mpi-*,misc-*'
         path: |
           clang-tidy-review-output.json
           clang-tidy-review-metadata.json
