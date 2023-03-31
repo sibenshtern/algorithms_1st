@@ -2,7 +2,7 @@
 
 #include <node.hpp>
 
-template<typename T>
+template <typename T>
 class Tree {
  public:
   Tree();
@@ -10,18 +10,17 @@ class Tree {
   void InsertOrUpdate(T key, T value);
   T Find(T key) const;
 
-  ~Tree() {
-    delete root_;
-  } 
+  ~Tree() { delete root_; }
+
  private:
   T Find(T key, Node<T> *node) const;
   Node<T> *root_{nullptr};
 };
 
-template<typename T>
-Tree<T>::Tree() {};
+template <typename T>
+Tree<T>::Tree(){};
 
-template<typename T>
+template <typename T>
 bool Tree<T>::Insert(T key, T value) {
   Node<T> *tmp = new Node<T>(key, value);
 
@@ -53,7 +52,7 @@ bool Tree<T>::Insert(T key, T value) {
   return true;
 }
 
-template<typename T>
+template <typename T>
 void Tree<T>::InsertOrUpdate(T key, T value) {
   Node<T> *tmp = new Node<T>(key, value);
 
@@ -84,18 +83,17 @@ void Tree<T>::InsertOrUpdate(T key, T value) {
   }
 }
 
-template<typename T>
+template <typename T>
 T Tree<T>::Find(T key) const {
   return Find(key, root_);
 }
 
-template<typename T>
+template <typename T>
 T Tree<T>::Find(T key, Node<T> *node) const {
   if (!node || node->key == key) {
     return node;
   }
-  
-  if (key < node->key)
-    return Find(key, node->left);
+
+  if (key < node->key) return Find(key, node->left);
   return Find(key, node->right);
 }
