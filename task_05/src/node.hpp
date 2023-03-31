@@ -1,9 +1,10 @@
 #pragma once
 
-template<typename T>
+template <typename T>
 class Node {
  public:
-  Node(T key_, T value_, Node<T> *parent_ = nullptr) : key{key_}, value{value_}, parent{parent_} {};
+  Node(T key_, T value_, Node<T> *parent_ = nullptr)
+      : key{key_}, value{value_}, parent{parent_} {};
 
   bool Insert(T key, T value, Node<T> *parent_node);
   void InsertOrUpdate(T key, T value, Node<T> *parent_node);

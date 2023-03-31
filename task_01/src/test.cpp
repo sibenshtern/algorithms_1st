@@ -1,6 +1,6 @@
-#include <climits>
 #include <gtest/gtest.h>
 
+#include <climits>
 #include <stack>
 
 #include "stack.hpp"
@@ -30,12 +30,12 @@ TEST(StackTestFloat, Simple) {
   stack.Push(2.8f);              // Stack [1, 2]
   ASSERT_EQ(stack.Pop(), 2.8f);  // Stack [1]
   ASSERT_EQ(stack.Pop(), 1.5f);  // Stack []
-  stack.Push(1.f);              // Stack [1]
-  stack.Push(2.f);              // Stack [1, 2]
-  ASSERT_EQ(stack.Pop(), 2.f);  // Stack [1]
-  stack.Push(3.f);              // Stack [1, 3]
-  ASSERT_EQ(stack.Pop(), 3.f);  // Stack [1]
-  ASSERT_EQ(stack.Pop(), 1.f);  // Stack []
+  stack.Push(1.f);               // Stack [1]
+  stack.Push(2.f);               // Stack [1, 2]
+  ASSERT_EQ(stack.Pop(), 2.f);   // Stack [1]
+  stack.Push(3.f);               // Stack [1, 3]
+  ASSERT_EQ(stack.Pop(), 3.f);   // Stack [1]
+  ASSERT_EQ(stack.Pop(), 1.f);   // Stack []
   ASSERT_EQ(stack.Pop(), 0.f);
 }
 
@@ -57,5 +57,5 @@ TEST(MinStackTest, Simple) {
   ASSERT_EQ(stack.GetMin(), 1);
   ASSERT_EQ(stack.Pop(), 3);  // Stack [1]
   ASSERT_EQ(stack.Pop(), 1);  // Stack []
-  ASSERT_EQ(stack.Pop(), 0); // Stack []
+  ASSERT_EQ(stack.Pop(), 0);  // Stack []
 }

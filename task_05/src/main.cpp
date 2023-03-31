@@ -1,12 +1,13 @@
 #include <iostream>
-#include <tree.hpp>
 
-int main() { 
-    Tree<int> tree;
+#include "tree.hpp"
 
-    tree.Insert(3, 1);
-    tree.Insert(2, 1);
-    tree.Insert(4, 2);
+int main() {
+  Tree<int> tree;
 
-    return 0; 
+  tree.Insert(3, 1);
+  tree.Insert(2, 1);
+  tree.Insert(4, 2);
+
+  return 0;
 }

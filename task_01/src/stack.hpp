@@ -1,39 +1,33 @@
 #pragma once
 
 #include <pthread.h>
-#include <vector>
+
 #include <limits>
+#include <vector>
 
 template <typename T>
 class Node {
  public:
-  Node(Node<T> *next, Node<T> *back, T value) : next_{next}, back_{back}, value_{value} {};
+  Node(Node<T> *next, Node<T> *back, T value)
+      : next_{next}, back_{back}, value_{value} {};
 
   Node<T> *AddElement(T value) {
-      next_ = new Node<T>(nullptr, this, value);
-      return next_;
+    next_ = new Node<T>(nullptr, this, value);
+    return next_;
   }
 
   void DeleteElement() {
-      delete next_;
-      next_ = nullptr;
+    delete next_;
+    next_ = nullptr;
   }
 
-  ~Node() {
-      delete next_;
-  }
+  ~Node() { delete next_; }
 
-  T GetValue() {
-      return value_;
-  }
+  T GetValue() { return value_; }
 
-  Node<T> *BackNode() {
-      return back_;
-  }
+  Node<T> *BackNode() { return back_; }
 
-  Node<T> *NextNode() {
-      return next_;
-  }
+  Node<T> *NextNode() { return next_; }
 
  private:
   T value_;
@@ -50,9 +44,7 @@ class Stack {
   size_t Size() { return size_; };
   bool IsEmpty();
 
-  ~Stack() {
-    delete start_;
-  }
+  ~Stack() { delete start_; }
 
  private:
   Node<T> *start_ = nullptr;
@@ -60,7 +52,7 @@ class Stack {
   size_t size_ = 0;
 };
 
-template<typename T>
+template <typename T>
 void Stack<T>::Push(T value) {
   if (!start_) {
     auto *tmp_ptr = new Node<T>(nullptr, nullptr, value);
@@ -74,7 +66,7 @@ void Stack<T>::Push(T value) {
   ++size_;
 }
 
-template<typename T>
+template <typename T>
 T Stack<T>::Pop() {
   if (IsEmpty()) {
     return T();
@@ -95,15 +87,14 @@ T Stack<T>::Pop() {
   }
 }
 
-template<typename T>
+template <typename T>
 T Stack<T>::Top() {
-  if (IsEmpty())
-    return T();
+  if (IsEmpty()) return T();
 
   return finish_->GetValue();
 }
 
-template<typename T>
+template <typename T>
 bool Stack<T>::IsEmpty() {
   return !start_;
 }
@@ -120,7 +111,7 @@ class MinStack {
   Stack<T> minimums_;
 };
 
-template<typename T>
+template <typename T>
 void MinStack<T>::Push(T value) {
   data_.Push(value);
   if (minimums_.IsEmpty() || value < minimums_.Top())
@@ -129,7 +120,7 @@ void MinStack<T>::Push(T value) {
     minimums_.Push(minimums_.Top());
 }
 
-template<typename T>
+template <typename T>
 T MinStack<T>::Pop() {
   if (minimums_.Size() > 0) {
     minimums_.Pop();
@@ -138,9 +129,8 @@ T MinStack<T>::Pop() {
   return T();
 }
 
-template<typename T>
+template <typename T>
 T MinStack<T>::GetMin() {
-  if (minimums_.Size() > 0)
-    return minimums_.Top();
+  if (minimums_.Size() > 0) return minimums_.Top();
   return T();
 }
