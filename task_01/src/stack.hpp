@@ -6,37 +6,40 @@
 #include <vector>
 
 template <typename T>
-class Node {
- public:
-  Node(Node<T> *next, Node<T> *back, T value)
-      : next_{next}, back_{back}, value_{value} {};
-
-  Node<T> *AddElement(T value) {
-    next_ = new Node<T>(nullptr, this, value);
-    return next_;
-  }
-
-  void DeleteElement() {
-    delete next_;
-    next_ = nullptr;
-  }
-
-  ~Node() { delete next_; }
-
-  T GetValue() { return value_; }
-
-  Node<T> *BackNode() { return back_; }
-
-  Node<T> *NextNode() { return next_; }
-
- private:
-  T value_;
-  Node *next_ = nullptr;
-  Node *back_ = nullptr;
-};
-
-template <typename T>
 class Stack {
+  struct Node {
+   public:
+    Node(Node *next, Node *back, T value)
+        : next_{next}, back_{back}, value_{value} {};
+
+    Node *AddElement(T value) {
+      next_ = new Node(nullptr, this, value);
+      return next_;
+    }
+
+    void DeleteElement() {
+      delete next_;
+      next_ = nullptr;
+    }
+
+    ~Node() { delete next_; }
+
+    T GetValue() { return value_; }
+
+    Node *BackNode() { return back_; }
+
+    Node *NextNode() { return next_; }
+
+   private:
+    T value_;
+    Node *next_ = nullptr;
+    Node *back_ = nullptr;
+  };
+
+  Node *start_ = nullptr;
+  Node *finish_ = nullptr;
+  size_t size_ = 0;
+
  public:
   void Push(T value);
   T Pop();
@@ -45,17 +48,12 @@ class Stack {
   bool IsEmpty();
 
   ~Stack() { delete start_; }
-
- private:
-  Node<T> *start_ = nullptr;
-  Node<T> *finish_ = nullptr;
-  size_t size_ = 0;
 };
 
 template <typename T>
 void Stack<T>::Push(T value) {
   if (!start_) {
-    auto *tmp_ptr = new Node<T>(nullptr, nullptr, value);
+    auto *tmp_ptr = new Node(nullptr, nullptr, value);
     start_ = tmp_ptr;
     finish_ = tmp_ptr;
   } else if (start_ == finish_) {
@@ -79,7 +77,7 @@ T Stack<T>::Pop() {
     return temp_value;
   } else {
     T temp_value = finish_->GetValue();
-    Node<T> *tmp_ptr = finish_;
+    Node *tmp_ptr = finish_;
     finish_ = tmp_ptr->BackNode();
     finish_->DeleteElement();
     --size_;

@@ -7,8 +7,8 @@ template <typename T>
 class MinHeap {
  public:
   void Push(T value);
-  void ShiftUp(int index);
-  void ShiftDown(int index);
+  void ShiftUp(size_t index);
+  void ShiftDown(size_t index);
 
   T Pop();
   size_t Size();
@@ -40,7 +40,7 @@ size_t MinHeap<T>::Size() {
 }
 
 template <typename T>
-void MinHeap<T>::ShiftUp(int index) {
+void MinHeap<T>::ShiftUp(size_t index) {
   int parent = index / 2;
   if (index > 0 && data_[index] < data_[parent]) {
     std::swap(data_[index], data_[parent]);
@@ -50,7 +50,7 @@ void MinHeap<T>::ShiftUp(int index) {
 }
 
 template <typename T>
-void MinHeap<T>::ShiftDown(int index) {
+void MinHeap<T>::ShiftDown(size_t index) {
   int left = 2 * index + 1;
   int right = 2 * index + 2;
 
@@ -71,10 +71,10 @@ void MinHeap<T>::ShiftDown(int index) {
 
 template <typename T>
 std::vector<T> Sort(const std::vector<T> &data) {
-  MinHeap<T> sort_heap;
-  for (int i = 0; i < data.size(); ++i) sort_heap.Push(data[i]);
+  MinHeap<T> heap;
+  for (int i = 0; i < data.size(); ++i) heap.Push(data[i]);
 
   std::vector<T> result(data.size());
-  for (int i = 0; i < data.size(); ++i) result[i] = sort_heap.Pop();
+  for (int i = 0; i < data.size(); ++i) result[i] = heap.Pop();
   return result;
 }
