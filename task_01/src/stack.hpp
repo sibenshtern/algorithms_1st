@@ -10,7 +10,7 @@ class Stack {
   struct Node {
    public:
     Node(Node *next, Node *back, T value)
-        : next_{next}, back_{back}, value_{value} {};
+        : next_{next}, prev_{back}, value_{value} {};
 
     Node *AddElement(T value) {
       next_ = new Node(nullptr, this, value);
@@ -26,14 +26,14 @@ class Stack {
 
     T GetValue() { return value_; }
 
-    Node *BackNode() { return back_; }
+    Node *BackNode() { return prev_; }
 
     Node *NextNode() { return next_; }
 
    private:
     T value_;
     Node *next_ = nullptr;
-    Node *back_ = nullptr;
+    Node *prev_ = nullptr;
   };
 
   Node *start_ = nullptr;
@@ -56,8 +56,6 @@ void Stack<T>::Push(T value) {
     auto *tmp_ptr = new Node(nullptr, nullptr, value);
     start_ = tmp_ptr;
     finish_ = tmp_ptr;
-  } else if (start_ == finish_) {
-    finish_ = start_->AddElement(value);
   } else {
     finish_ = finish_->AddElement(value);
   }

@@ -42,6 +42,8 @@ size_t MinHeap<T>::Size() {
 
 template <typename T>
 void MinHeap<T>::ShiftUp(size_t index) {
+  if (index == 0) return;
+
   int parent = index / 2;
   if (index > 0 && data_[index] < data_[parent]) {
     std::swap(data_[index], data_[parent]);
